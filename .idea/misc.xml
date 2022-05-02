@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_agreement.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_appicon_foreground.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_calendar.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_camera_button.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_cancel.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_globe_grid.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_location_blip.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_location_notification.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_pfp_placeholder.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_pfp_placeholder_withplus.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_profile.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_question_mark.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_refreshlocation.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_search.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_settings.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_visibility.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/drawable/ic_visibilityoff.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddy/app/src/main/res/layout/mapsinfowindow.xml" value="0.14465092918131592" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable-anydpi-v23/bg_gradient_background.xml" value="1.609375" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable-ldpi-v23/bg_drawable_v23_ldpi.xml" value="0.3458333333333333" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable-ldpi-v23/bg_gradient_background.xml" value="0.3458333333333333" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable-v23/bg_gradient_background.xml" value="0.3458333333333333" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable-v23/bg_gradient_backgruond.xml" value="0.3458333333333333" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable-v23/ic_agreement.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable-v23/splash_background.xml" value="0.49375" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/bg_grad_test.xml" value="0.1609375" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/bg_gradient.xml" value="0.3416666666666667" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/bg_gradient_background.xml" value="0.5369791666666667" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/bg_gradient_vector.xml" value="0.5369791666666667" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/ic_agreement.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/ic_appIcon_foreground.xml" value="0.1" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/ic_appicon.xml" value="0.3494791666666667" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/ic_appicon_foreground.xml" value="0.3" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/ic_email.xml" value="0.3494791666666667" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/ic_flip_cam.xml" value="0.3494791666666667" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/ic_globe_grid_colored.xml" value="0.3458333333333333" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/ic_globeicon_login.xml" value="0.2916666666666667" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/ic_signinlogo.xml" value="0.67" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/drawable/splash_background.xml" value="0.190625" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/layout/bg_splash_background.xml" value="0.3026041666666667" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/layout/mapsinfowindow.xml" value="0.32447916666666665" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/mipmap-anydpi-v26/ic_appicon.xml" value="0.17083333333333334" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/mipmap-anydpi-v26/ic_appicon_round.xml" value="0.3" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3" />
+        <entry key="..\:/AndroidStuff/Projects/BondBuddyRemake/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.3" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

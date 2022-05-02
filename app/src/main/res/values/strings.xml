@@ -1,0 +1,67 @@
+<resources>
+    <string name="app_name">BondBuddyRemake</string>
+    <string name="InactiveUserDialogText">Users are cached and marked inactive after 24 hours of inactivity due to poor network connections, users uninstalling or removing the app, missing location permissions, and etc. To remove user data press and hold on their profile card. Warning: This will remove the user from the company, even if user activity is restored. Data is not restorable.</string>
+    <string-array name="state_list">
+        <item>State</item>
+        <item>AL</item>
+        <item>AK</item>
+        <item>AS</item>
+        <item>AZ</item>
+        <item>AR</item>
+        <item>CA</item>
+        <item>CO</item>
+        <item>CT</item>
+        <item>DE</item>
+        <item>DC</item>
+        <item>FM</item>
+        <item>FL</item>
+        <item>GA</item>
+        <item>GU</item>
+        <item>HI</item>
+        <item>ID</item>
+        <item>IL</item>
+        <item>IN</item>
+        <item>IA</item>
+        <item>KS</item>
+        <item>KY</item>
+        <item>LA</item>
+        <item>ME</item>
+        <item>MH</item>
+        <item>MD</item>
+        <item>MA</item>
+        <item>MI</item>
+        <item>MN</item>
+        <item>MS</item>
+        <item>MO</item>
+        <item>MT</item>
+        <item>NE</item>
+        <item>NV</item>
+        <item>NH</item>
+        <item>NJ</item>
+        <item>NM</item>
+        <item>NY</item>
+        <item>NC</item>
+        <item>ND</item>
+        <item>MP</item>
+        <item>OH</item>
+        <item>OK</item>
+        <item>OR</item>
+        <item>PW</item>
+        <item>PA</item>
+        <item>PR</item>
+        <item>RI</item>
+        <item>SC</item>
+        <item>SD</item>
+        <item>TN</item>
+        <item>TX</item>
+        <item>UT</item>
+        <item>VT</item>
+        <item>VI</item>
+        <item>VA</item>
+        <item>WA</item>
+        <item>WV</item>
+        <item>WI</item>
+        <item>WY</item>
+    </string-array>
+    <string name="LocationPermissionsText">Enable location permissions in your phones settings to continue. Location Permissions are essential to app functionality.\" \"Location data is stored securely and is accessible only by your bondsman\"</string>
+</resources>

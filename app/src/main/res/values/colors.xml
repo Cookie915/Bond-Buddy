@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="darkthemetext">#ffd32c52</color>
+    <color name="darkthemetextlight">#CA656F</color>
+    <color name="darkthemetextheader">#D20030</color>
+
+    <color name="focused">#ff0ca4d7</color>
+    <color name="navitemfocused">#76BCFF</color>
+
+    <color name="customtextfieldgradient1">#FF0099FF</color>
+    <color name="customtextfieldgradient2">#FFFF15D8</color>
+
+    <color name="splashactionbarcolor">#702AB9</color>
+
+    <color name="bg_gradient_color_v23">
+
+    </color>
+
+    <color name="SecondaryBlue">#2574FF</color>
+    <color name="SecondaryBlueLight">#3281FF</color>
+    <color name="UnfocusedIconGray">#A5A7AC</color>
+    <color name="DividerGray">#F7F7F8</color>
+    <color name="DividerStrokeGray">#EFEFF5</color>
+    <color name="ExtraLightDividerGray">#D8D8D8</color>
+    <color name="DividerLabelGray">#404040</color>
+    <color name="LogOutButtonRed">#FF4040</color>
+    <color name="LoginBackgroundBlue">#4356FD</color>
+
+
+
+
+</resources>
