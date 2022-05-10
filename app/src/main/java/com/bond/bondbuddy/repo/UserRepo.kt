@@ -4,21 +4,19 @@ import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
 import javax.inject.Inject
 
 class UserRepository @Inject constructor() {
+    private val tag = "AppRepo"
     val firebaseAuth = FirebaseAuth.getInstance()
     val database: FirebaseFirestore = FirebaseFirestore.getInstance()
     val dbUsersRef = database.collection("users")
     private val dbCompanyRef = database.collection("companies")
-    private val tag = "AppRepo"
 
     //  Set
     fun setOwner(boolean: Boolean): Task<Void> {
@@ -41,14 +39,6 @@ class UserRepository @Inject constructor() {
         return dbUsersRef.document(id).set(mapOf("boundingState" to state), SetOptions.merge())
     }
 
-//    suspend fun setUserDisplayName(name: String) = withContext(Dispatchers.IO) {
-//        val firebaseUser = firebaseAuth.currentUser
-//        val firebaseUID = firebaseUser?.uid.toString()
-//        dbUsersRef.document(firebaseUID).set(mapOf("displayname" to name), SetOptions.merge())
-//        firebaseUser?.updateProfile(userProfileChangeRequest {
-//            this.displayName = name
-//        })
-//    }
         //  returns a task to remove old profile picture from fire storage and replace it with newUrl
     @ExperimentalStdlibApi
     fun replaceProfilePicture(oldUri: String, newUri: String, userID: String): Task<Void> {
@@ -102,27 +92,5 @@ class UserRepository @Inject constructor() {
                 }
             }
         }
-    }
-
-    //  Functions
-        //  polls storage certain number of times with 1s delay to wait for value
-    fun pollStorage(storageRef: StorageReference, times: Int): String? {
-        var repeatCount = times
-        while (repeatCount > 0) {
-            Thread.sleep(1000)
-            try {
-                val urlTask = storageRef.downloadUrl
-                Tasks.await(urlTask)
-                if (urlTask.exception == null && urlTask.result != null) {
-                    Log.i("AppRepo", "poll storage url ${urlTask.result}")
-                    return urlTask.result.toString()
-                }
-            } catch (ex: Exception) {
-                repeatCount -= 1
-                Log.i("AppRepo", "exception: ${ex.localizedMessage}")
-            }
-        }
-        Log.e(tag, "Poll Storage Returned Null")
-        return null
     }
 }

@@ -19,7 +19,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.MutableLiveData
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.GeoPoint
+import com.google.firebase.storage.StorageReference
 import java.nio.ByteBuffer
 import java.util.concurrent.Executor
 import kotlin.coroutines.resume
@@ -67,7 +69,6 @@ fun imageProxyToBitmap(image: ImageProxy): Bitmap {
             rotation += 90
         }
     }
-    Log.i("AppRepo", "ImageProxyToBitmap $rotation")
     val matrix = Matrix()
     matrix.postRotate(rotation.toFloat())
     val buffer: ByteBuffer = image.planes[0].buffer
@@ -105,6 +106,25 @@ fun animateHorizontalAlignmentAsState(
 
 fun GeoPoint.toLatLng(): LatLng {
     return LatLng(latitude, longitude)
+}
+
+//  polls storage certain number of times with 1s delay to wait for value
+fun pollStorage(storageRef: StorageReference, times: Int): String? {
+    var repeatCount = times
+    while (repeatCount > 0) {
+        Thread.sleep(1000)
+        try {
+            val urlTask = storageRef.downloadUrl
+            Tasks.await(urlTask)
+            if (urlTask.exception == null && urlTask.result != null) {
+                return urlTask.result.toString()
+            }
+        } catch (ex: Exception) {
+            repeatCount -= 1
+            Log.e("PollStorage", "exception: ${ex.localizedMessage}")
+        }
+    }
+    return null
 }
 
 

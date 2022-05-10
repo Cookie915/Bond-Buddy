@@ -21,7 +21,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bond.bondbuddy.R
 import com.bond.bondbuddy.screens.admin.ReauthenticationPrompt
@@ -41,9 +40,7 @@ class EmailVerifyActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         val currentUser = FirebaseAuth.getInstance().currentUser!!
         setContent {
-            BackHandler {
-
-            }
+            BackHandler {}
             VerifyEmail(emailToSendTo = currentUser.email!!) {
                 FirebaseAuth.getInstance().currentUser!!.reload().addOnSuccessListener {
                     finishAfterTransition()
@@ -181,12 +178,6 @@ fun VerifyEmail(emailToSendTo: String, onEmailVerified: () -> Unit) {
             delay(2500)
         }
     }
-}
-
-@Preview
-@Composable
-fun VerifyEmailPreview() {
-    VerifyEmail("testemail@gmail.com") {}
 }
 
 @Composable

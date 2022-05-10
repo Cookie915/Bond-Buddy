@@ -2,7 +2,6 @@ package com.bond.bondbuddy.activities
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +22,7 @@ import com.bond.bondbuddy.navigation.registerGraph
 import com.bond.bondbuddy.navigation.userGraph
 import com.bond.bondbuddy.repo.UserRepository
 import com.bond.bondbuddy.viewmodels.CompanyViewModel
+import com.bond.bondbuddy.viewmodels.MapViewModel
 import com.bond.bondbuddy.viewmodels.UserViewModel
 import com.bond.bondbuddy.workmanager.TokenRefreshWorkerServices
 import com.google.accompanist.navigation.animation.AnimatedNavHost
@@ -46,13 +46,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @ExperimentalStdlibApi
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    val tag = "MainActivityLogs"
     private val googleApiAvailability = GoogleApiAvailability.getInstance()
     private var userRepo: UserRepository = UserRepository()
     private lateinit var emailAuthStateListener: FirebaseAuth.AuthStateListener
     lateinit var userViewModel: UserViewModel
     lateinit var companyViewModel: CompanyViewModel
+    lateinit var mapViewModel: MapViewModel
     private val firebaseUser = FirebaseAuth.getInstance().currentUser
-    val tag = "MainActivityLogs"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,16 +82,17 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        //monthly worker to refresh fcm tokens serverside
+        //  monthly worker to refresh fcm tokens serverside
         TokenRefreshWorkerServices.TokenRefreshWorker.enqueueTokenRefreshWork(applicationContext)
-        //check for google play services
+        //  check for google play services
         if (googleApiAvailability.isGooglePlayServicesAvailable(applicationContext) != ConnectionResult.SUCCESS) {
             googleApiAvailability.makeGooglePlayServicesAvailable(this)
         }
         userViewModel = ViewModelProvider(this)[UserViewModel::class.java]
         companyViewModel = ViewModelProvider(this)[CompanyViewModel::class.java]
+        mapViewModel = ViewModelProvider(this)[MapViewModel::class.java]
+
         setContent {
-            Log.i(tag, "Setting Content")
             var userToNavigateTo: String? by remember {
                 mutableStateOf(null)
             }
@@ -153,9 +155,3 @@ class MainActivity : AppCompatActivity() {
 
 // TODO
 //  alpha launch
-//  create play store feature graphic
-
-
-
-
-

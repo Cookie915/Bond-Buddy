@@ -37,10 +37,7 @@ import androidx.work.OneTimeWorkRequest
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.bond.bondbuddy.R
-import com.bond.bondbuddy.components.LockScreenOrientation
-import com.bond.bondbuddy.components.executor
-import com.bond.bondbuddy.components.getCameraProvider
-import com.bond.bondbuddy.components.imageProxyToBitmap
+import com.bond.bondbuddy.components.*
 import com.bond.bondbuddy.models.User
 import com.bond.bondbuddy.viewmodels.UserViewModel
 import com.bond.bondbuddy.workmanager.UploadImageWorkerServices
@@ -72,7 +69,6 @@ fun CameraCapture(
     LaunchedEffect(key1 = Unit){
         Log.i("UserViewModel", "From Camera Capture ${userViewModel.hashCode()}")
     }
-    val appRepo = userViewModel.userRepo
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val coroutineScope = rememberCoroutineScope()
@@ -273,7 +269,7 @@ fun CameraCapture(
                                                       imageUploadLocationRef.putBytes(data).addOnSuccessListener {
                                                           coroutineScope.launch(Dispatchers.IO) {
                                                               val userCopy = user.copy()
-                                                              val uri: String? = appRepo.pollStorage(resizedImageUploadLocationRef, 10)
+                                                              val uri: String? = pollStorage(resizedImageUploadLocationRef, 10)
                                                               when (uri.isNullOrBlank()) {
                                                                   true  -> {
                                                                       Log.e("CameraCapture", "Failed To Retrieve Uri")

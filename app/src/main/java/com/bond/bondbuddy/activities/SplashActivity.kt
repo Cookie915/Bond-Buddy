@@ -3,7 +3,6 @@ package com.bond.bondbuddy.activities
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ExperimentalMaterialApi
@@ -27,19 +26,16 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        Log.i(tag, "On Resume")
         firebaseAuth.addAuthStateListener(authStateListener)
     }
 
     override fun onPause() {
         super.onPause()
-        Log.i(tag, "On Pause")
         firebaseAuth.removeAuthStateListener(authStateListener)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i(tag, "OnCreate")
         val notificationType = intent.extras?.get("Notification_Type")
         mainActivityIntent = Intent(this, MainActivity::class.java)
         if (notificationType != null){
@@ -62,18 +58,12 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        Log.i(tag, "OnStart")
         firebaseAuth.addAuthStateListener(authStateListener)
     }
 
     override fun onStop() {
         super.onStop()
-        Log.i(tag, "onStop")
         firebaseAuth.removeAuthStateListener(authStateListener)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.i(tag, "onDestroy")
-    }
 }

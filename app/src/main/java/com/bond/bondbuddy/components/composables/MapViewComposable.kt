@@ -1,5 +1,6 @@
 package com.bond.bondbuddy.components.composables
 
+import android.util.Log
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -47,6 +48,7 @@ fun LocationsMap(
                     ctx,
                     map,
                     onUserInfoClick = { marker ->
+                        Log.i("AdminPeopleScreen" ,"userInfoClickFrom Map")
                         val user = users.data?.find { user ->
                             user.id == marker.tag
                         }

@@ -55,6 +55,7 @@ import com.bond.bondbuddy.viewmodels.MapViewModel.Companion.moveCameraDefaultPos
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.android.gms.maps.MapView
 import java.text.DateFormat
+import java.util.*
 import androidx.compose.animation.slideInVertically as slideInVertically1
 
 @ExperimentalComposeUiApi
@@ -63,29 +64,27 @@ import androidx.compose.animation.slideInVertically as slideInVertically1
 fun AdminPeopleLocationsScreen(
     navController: NavController, userToNavigateTo: String?, companyViewModel: CompanyViewModel
 ) {
+    val ctx: Context = LocalContext.current
+    val focusManger = LocalFocusManager.current
     val mapViewModel: MapViewModel = viewModel()
+
+    //  State
+    var selectedUser: User? by remember {
+        mutableStateOf(null)
+    }
+    var selectedUserLocations by remember { mutableStateOf<(List<UserLocation>)?>(null) }
     var userToNavigateToState by remember {
         mutableStateOf(userToNavigateTo)
     }
-    Scaffold(bottomBar = { AdminBottomBar(navController = navController) }) {
-        val ctx: Context = LocalContext.current
-        val focusManger = LocalFocusManager.current
-        val companyUsers by companyViewModel.companyMembers.collectAsState()
-        val lazyColumnState = rememberLazyListState()
-        var selectedUser: User? by remember {
-            mutableStateOf(null)
-        }
-        var selectedUserLocations by remember { mutableStateOf<(List<UserLocation>)?>(null) }
-        val mapView: MapView = rememberMapViewWithLifecycle()
+    var autofillNames: List<ValueAutoCompleteEntity<User>> by remember {
+        mutableStateOf(listOf())
+    }
+    val companyUsers by companyViewModel.companyMembers.collectAsState()
+    val lazyColumnState = rememberLazyListState()
+    val mapView: MapView = rememberMapViewWithLifecycle()
 
-        //  State
-        var autofillNames: List<ValueAutoCompleteEntity<User>> by remember {
-            mutableStateOf(listOf())
-        }
-        var firstLaunch by remember {
-            mutableStateOf(true)
-        }
-        //  Layout
+    //  Layout
+    Scaffold(bottomBar = { AdminBottomBar(navController = navController) }) {
         when (companyUsers) {
             is Response.Loading         -> {
                 Box(modifier = Modifier.fillMaxSize()) {
@@ -135,23 +134,20 @@ fun AdminPeopleLocationsScreen(
                             }
                         },
                     ) {
-                        //  on Map Init
-                        if (firstLaunch) {
-                            mapViewModel.moveCameraDefaultPosition()
-                            if (userToNavigateToState != null) {
-                                selectedUser = getUserForMap(
-                                    companyViewModel, mapViewModel, ctx, companyUsers.data, userToNavigateToState
-                                ) { userLocations ->
-                                    selectedUserLocations = userLocations
-                                }
-                            } else {
-                                mapViewModel.showLastLocationMarkers(companyUsers.data, ctx)
+                        mapViewModel.moveCameraDefaultPosition()
+                        mapViewModel.showLastLocationMarkers(companyUsers.data, ctx)
+                        if (userToNavigateToState != null) {
+                            selectedUser = getUserForMap(
+                                companyViewModel, mapViewModel, ctx, companyUsers.data, userToNavigateToState
+                            ) { userLocations ->
+                                selectedUserLocations = userLocations
                             }
-                            firstLaunch = false
                         }
                     }
                     Row(
-                        modifier = Modifier.fillMaxWidth().offset(y = 16.dp), horizontalArrangement = Arrangement.Center
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .offset(y = 16.dp), horizontalArrangement = Arrangement.Center
                     ) {
                         MapSearchBar(items = autofillNames) {
                             focusManger.clearFocus()
@@ -170,7 +166,10 @@ fun AdminPeopleLocationsScreen(
 
                     ) {
                         Card(
-                            modifier = Modifier.fillMaxWidth(0.85f).fillMaxHeight(0.5f).padding(bottom = 64.dp), elevation = 24.dp
+                            modifier = Modifier
+                                .fillMaxWidth(0.85f)
+                                .fillMaxHeight(0.5f)
+                                .padding(bottom = 64.dp), elevation = 24.dp
                         ) {
                             if (!selectedUserLocations.isNullOrEmpty()) {
                                 val locationsMap = mutableMapOf<String, MutableList<UserLocation>>()
@@ -183,7 +182,9 @@ fun AdminPeopleLocationsScreen(
                                 }
                                 val locationsList = locationsMap.toList()
                                 LazyColumn(
-                                    modifier = Modifier.fillMaxWidth(1.0f).fillMaxHeight(1f),
+                                    modifier = Modifier
+                                        .fillMaxWidth(1.0f)
+                                        .fillMaxHeight(1f),
                                     contentPadding = PaddingValues(
                                         horizontal = 16.dp, vertical = 16.dp
                                     ),

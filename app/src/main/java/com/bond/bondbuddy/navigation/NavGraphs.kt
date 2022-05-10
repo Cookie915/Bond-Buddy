@@ -43,7 +43,7 @@ import com.google.accompanist.permissions.*
 fun NavGraphBuilder.adminGraph(
     navController: NavController,
     userViewModel: UserViewModel,
-    companyViewModel: CompanyViewModel
+    companyViewModel: CompanyViewModel,
 ) {
     navigation(
         "AdminHomeScreen", "adminGraph"

@@ -210,7 +210,7 @@ fun mapActiveProfilePicture(
                     this.title(user.displayname)
                     this.snippet("Tap To View All Locations")
                     this.icon(BitmapDescriptorFactory.fromBitmap(placeholder!!.toBitmap()))
-                    if (!user.active){
+                    if (!user.active || user.cached){
                         this.alpha(0.4f)
                     }
                 }

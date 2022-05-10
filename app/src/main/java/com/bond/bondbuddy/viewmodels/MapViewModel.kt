@@ -52,51 +52,51 @@ class MapViewModel @Inject constructor() : ViewModel() {
     suspend fun initializeMap(ctx: Context, mapView: MapView, onUserInfoClick: (Marker) -> Unit, onMapInit: () -> Unit) {
         if (this.isInit()) {
             return
-        }
-        Log.i("MapViewModel", "Redrawing map")
-        map = mapView.awaitMap()
-        Log.i("MapViewModel", "got the map map")
-        clusterManager = ClusterManager(ctx, map)
-        clusterRenderer = LocationClusterRenderer(ctx, map!!, clusterManager!!, map!!.cameraPosition.zoom, 6.0f)
-        clusterManager!!.renderer = clusterRenderer
-        normalMarkers = clusterManager!!.markerManager.newCollection()
-        map!!.setOnCameraMoveListener(clusterRenderer)
-        map!!.setOnCameraIdleListener(clusterManager)
-        map!!.setOnMarkerClickListener(clusterManager!!.markerManager)
-        normalMarkers!!.setOnMarkerClickListener {
-            Log.i(tag, "normal marker clicked")
-            it.showInfoWindow()
-            animateZoomInCamera(it.position, 6f)
-            return@setOnMarkerClickListener true
-        }
-        normalMarkers!!.setOnInfoWindowClickListener {
-            Log.i(tag, "Normal Marker Info Window clicked")
-            onUserInfoClick(it)
-        }
-        clusterManager!!.setOnClusterClickListener {
-            Log.i(tag, "Cluster clicked")
-            it.items.first().getUserID()
-            animateZoomInCamera(it.position, 6f)
-            return@setOnClusterClickListener true
-        }
-        clusterManager!!.setOnClusterItemClickListener {
-            Log.i(tag, "Cluster Item clicked")
-            animateZoomInCamera(it.position, 14f)
-            clusterManager!!.markerCollection.markers.forEach { marker ->
-                if (marker.title == it.title) {
-                    clusterManager!!.markerCollection.markers.forEach { mark ->
-                        mark.hideInfoWindow()
-                    }
-                    marker.showInfoWindow()
-                }
+        } else {
+            Log.i("MapViewModel", "Redrawing map")
+            map = mapView.awaitMap()
+            clusterManager = ClusterManager(ctx, map)
+            clusterRenderer = LocationClusterRenderer(ctx, map!!, clusterManager!!, map!!.cameraPosition.zoom, 14.0f)
+            clusterManager!!.renderer = clusterRenderer
+            normalMarkers = clusterManager!!.markerManager.newCollection()
+            map!!.setOnCameraMoveListener(clusterRenderer)
+            map!!.setOnCameraIdleListener(clusterManager)
+            map!!.setOnMarkerClickListener(clusterManager!!.markerManager)
+            normalMarkers!!.setOnMarkerClickListener {
+                Log.i(tag, "normal marker clicked")
+                it.showInfoWindow()
+                animateZoomInCamera(it.position, 6f)
+                return@setOnMarkerClickListener true
             }
-            return@setOnClusterItemClickListener true
+            normalMarkers!!.setOnInfoWindowClickListener {
+                Log.i(tag, "Normal Marker Info Window clicked")
+                onUserInfoClick(it)
+            }
+            clusterManager!!.setOnClusterClickListener {
+                Log.i(tag, "Cluster clicked")
+                it.items.first().getUserID()
+                animateZoomInCamera(it.position, 6f)
+                return@setOnClusterClickListener true
+            }
+            clusterManager!!.setOnClusterItemClickListener {
+                Log.i(tag, "Cluster Item clicked")
+                animateZoomInCamera(it.position, 14f)
+                clusterManager!!.markerCollection.markers.forEach { marker ->
+                    if (marker.title == it.title) {
+                        clusterManager!!.markerCollection.markers.forEach { mark ->
+                            mark.hideInfoWindow()
+                        }
+                        marker.showInfoWindow()
+                    }
+                }
+                return@setOnClusterItemClickListener true
+            }
+            clusterManager!!.setOnClusterInfoWindowClickListener {
+                Log.i(tag, "Cluster Marker Info Window clicked")
+            }
+            Log.i("MapViewModel", "map init")
+            onMapInit()
         }
-        clusterManager!!.setOnClusterInfoWindowClickListener {
-            Log.i(tag, "Cluster Marker Info Window clicked")
-        }
-        Log.i("MapViewModel", "got the map init")
-        onMapInit()
     }
 
     fun showLastLocationMarkers(users: List<User>?, ctx: Context) {
@@ -104,27 +104,24 @@ class MapViewModel @Inject constructor() : ViewModel() {
             map!!.clear()
             clusterManager!!.clearItems()
             clusterManager!!.cluster()
-            val coroutineScope = CoroutineScope(Dispatchers.Main)
-            coroutineScope.launch {
-                users.forEach { user ->
-                    try {
-                        if (user.profilepicurl.isBlank()) {
-                            mapActiveProfilePicture(ctx, normalMarkers, user, R.drawable.ic_pfp_placeholder)
-                        } else {
-                            FirebaseStorage.getInstance().getReferenceFromUrl(user.profilepicurl).downloadUrl.addOnCompleteListener {
-                                    if (it.isSuccessful) {
-                                        val uri = it.result.toString()
-                                        mapActiveProfilePicture(ctx = ctx, normalMarkers = normalMarkers, user = user, uri)
-                                    }
-                                    if (!it.isSuccessful) {
-                                        mapActiveProfilePicture(ctx = ctx, normalMarkers, user, R.drawable.ic_pfp_placeholder)
-                                    }
-                                }
-                        }
-                    } catch (ex: Exception) {
-                        Log.e("MapViewModel", null, ex)
+            users.forEach { user ->
+                try {
+                    if (user.profilepicurl.isBlank()) {
                         mapActiveProfilePicture(ctx, normalMarkers, user, R.drawable.ic_pfp_placeholder)
+                    } else {
+                        FirebaseStorage.getInstance().getReferenceFromUrl(user.profilepicurl).downloadUrl.addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                val uri = it.result.toString()
+                                mapActiveProfilePicture(ctx = ctx, normalMarkers = normalMarkers, user = user, uri)
+                            }
+                            if (!it.isSuccessful) {
+                                mapActiveProfilePicture(ctx = ctx, normalMarkers, user, R.drawable.ic_pfp_placeholder)
+                            }
+                        }
                     }
+                } catch (ex: Exception) {
+                    Log.e("MapViewModel", null, ex)
+                    mapActiveProfilePicture(ctx, normalMarkers, user, R.drawable.ic_pfp_placeholder)
                 }
             }
         }
