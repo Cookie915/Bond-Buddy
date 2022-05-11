@@ -74,7 +74,7 @@ class LoginActivity : ComponentActivity() {
         AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(providers)
             .setTheme(R.style.LoginTheme)
             .setLogo(R.drawable.ic_globeicon_login)
-            .setIsSmartLockEnabled(true, true)
+            .setIsSmartLockEnabled(false)
             .setTosAndPrivacyPolicyUrls(
                 Uri.parse("https://sites.google.com/view/bondbuddy-privacy-policy/home").toString(),
                 Uri.parse("https://sites.google.com/view/bondbuddy-privacy-policy/home").toString()
